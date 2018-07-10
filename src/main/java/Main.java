@@ -5,18 +5,14 @@ import org.eclipse.jetty.servlet.ServletHolder;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Frontend frontend = new Frontend();
+        MirrorRequestServlet mirrorRequestServlet = new MirrorRequestServlet(); // сервлет для обработки запросов
+
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        context.addServlet(new ServletHolder(mirrorRequestServlet), "/mirror");
 
         Server server = new Server(8080); // основной класс Jetty сервера
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        server.setHandler(context);
-        context.addServlet(new ServletHolder(frontend), "/authform");
-
+        server.setHandler(context); // передача хендлера
         server.start();
-        try {
-            server.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        server.join();
     }
 }
