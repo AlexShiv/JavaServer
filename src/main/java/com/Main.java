@@ -1,3 +1,5 @@
+package com;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -13,6 +15,7 @@ public class Main {
         Server server = new Server(8080); // основной класс Jetty сервера
         server.setHandler(context); // передача хендлера
         server.start();
+        System.out.println("Server started");
         server.join();
     }
 }

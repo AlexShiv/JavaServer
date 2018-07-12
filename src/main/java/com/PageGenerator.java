@@ -1,3 +1,5 @@
+package com;
+
 import freemarker.cache.FileTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
